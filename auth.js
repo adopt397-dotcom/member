@@ -1,18 +1,17 @@
-// /member/auth.js
-export function saveSession(email, name) {
+window.saveSession = function(email, name) {
   sessionStorage.setItem('user', JSON.stringify({ email, name, loggedIn: true }));
-}
+};
 
-export function getSession() {
+window.getSession = function() {
   const data = sessionStorage.getItem('user');
   return data ? JSON.parse(data) : null;
-}
+};
 
-export function isLoggedIn() {
-  const session = getSession();
+window.isLoggedIn = function() {
+  const session = window.getSession();
   return session && session.loggedIn === true;
-}
+};
 
-export function logout() {
+window.logout = function() {
   sessionStorage.removeItem('user');
-}
+};
