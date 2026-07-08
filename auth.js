@@ -14,4 +14,6 @@ window.isLoggedIn = function() {
 
 window.logout = function() {
   sessionStorage.removeItem('user');
+  // 로그아웃 후 페이지 새로고침
+  window.location.reload();
 };
