@@ -50,19 +50,16 @@
     // GAS URL (Member GAS)
     const GAS_URL = 'https://script.google.com/macros/s/AKfycbxmqRaTC5SlbstqyWcshgfEt99HyomTMq0BAZr5aXFp9EDJNGRIy1pgRZJA3-xNrm29/exec';
 
-    // Helper: 결과 표시
     function showResult(elementId, message, isSuccess) {
       const el = document.getElementById(elementId);
       el.textContent = message;
       el.className = 'result ' + (isSuccess ? 'success' : 'error');
     }
 
-    // ===== 로그인 =====
     document.getElementById('testLoginBtn').addEventListener('click', async function() {
       const email = document.getElementById('loginEmail').value.trim();
       const pin = document.getElementById('loginPin').value.trim();
       showResult('loginResult', '⏳ Processing...', false);
-      
       try {
         const response = await fetch(GAS_URL, {
           method: 'POST',
@@ -76,13 +73,11 @@
       }
     });
 
-    // ===== 회원가입 =====
     document.getElementById('testSignupBtn').addEventListener('click', async function() {
       const email = document.getElementById('signupEmail').value.trim();
       const name = document.getElementById('signupName').value.trim();
       const pin = document.getElementById('signupPin').value.trim();
       const pinConfirm = document.getElementById('signupPinConfirm').value.trim();
-      
       if (pin !== pinConfirm) {
         showResult('signupResult', '❌ PINs do not match.', false);
         return;
@@ -91,9 +86,7 @@
         showResult('signupResult', '❌ PIN must be 4 digits.', false);
         return;
       }
-      
       showResult('signupResult', '⏳ Processing...', false);
-      
       try {
         const response = await fetch(GAS_URL, {
           method: 'POST',
@@ -107,7 +100,6 @@
       }
     });
 
-    // ===== 상태 확인 =====
     document.getElementById('testStatusBtn').addEventListener('click', async function() {
       showResult('statusResult', '⏳ Checking...', false);
       try {
