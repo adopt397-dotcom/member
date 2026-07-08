@@ -98,17 +98,37 @@ window.renderLoginOverlay = async function() {
   });
 }
 
+// Helper: set button loading state
+function setButtonLoading(btn, loading) {
+  if (loading) {
+    btn.disabled = true;
+    btn.textContent = '⏳ Processing...';
+    btn.style.opacity = '0.6';
+    btn.style.cursor = 'wait';
+  } else {
+    btn.disabled = false;
+    btn.textContent = btn.dataset.originalText || 'Submit';
+    btn.style.opacity = '1';
+    btn.style.cursor = 'pointer';
+  }
+}
+
 // Login handler
 async function handleLogin() {
   const email = document.getElementById('loginEmail').value.trim();
   const pin = document.getElementById('loginPin').value.trim();
   const errorEl = document.getElementById('loginError');
+  const btn = document.getElementById('loginBtn');
 
   if (!email || !pin) {
     errorEl.textContent = 'Please enter both email and PIN.';
     errorEl.style.display = 'block';
     return;
   }
+
+  // Save original text and disable button
+  if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent;
+  setButtonLoading(btn, true);
 
   try {
     const result = await window.login(email, pin);
@@ -122,10 +142,12 @@ async function handleLogin() {
     } else {
       errorEl.textContent = result.message || 'Login failed.';
       errorEl.style.display = 'block';
+      setButtonLoading(btn, false);
     }
   } catch (err) {
     errorEl.textContent = 'Server connection error.';
     errorEl.style.display = 'block';
+    setButtonLoading(btn, false);
   }
 }
 
@@ -136,6 +158,7 @@ async function handleSignup() {
   const pin = document.getElementById('signupPin').value.trim();
   const pinConfirm = document.getElementById('signupPinConfirm').value.trim();
   const errorEl = document.getElementById('signupError');
+  const btn = document.getElementById('signupBtn');
 
   if (!email || !name || !pin || !pinConfirm) {
     errorEl.textContent = 'Please fill in all fields.';
@@ -155,6 +178,10 @@ async function handleSignup() {
     return;
   }
 
+  // Save original text and disable button
+  if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent;
+  setButtonLoading(btn, true);
+
   try {
     const result = await window.signup(email, pin, name);
     if (result.success) {
@@ -166,13 +193,16 @@ async function handleSignup() {
       document.getElementById('toggleText').style.display = 'block';
       document.getElementById('loginEmail').value = email;
       document.getElementById('loginPin').value = '';
+      setButtonLoading(btn, false);
     } else {
       errorEl.textContent = result.message || 'Signup failed.';
       errorEl.style.display = 'block';
+      setButtonLoading(btn, false);
     }
   } catch (err) {
     errorEl.textContent = 'Server connection error.';
     errorEl.style.display = 'block';
+    setButtonLoading(btn, false);
   }
 }
 
@@ -215,6 +245,7 @@ async function handleChangePin() {
   const newPin = document.getElementById('newPin').value.trim();
   const newPinConfirm = document.getElementById('newPinConfirm').value.trim();
   const errorEl = document.getElementById('changePinError');
+  const btn = document.getElementById('changePinBtn');
 
   if (!oldPin || !newPin || !newPinConfirm) {
     errorEl.textContent = 'Please fill in all fields.';
@@ -234,6 +265,10 @@ async function handleChangePin() {
     return;
   }
 
+  // Save original text and disable button
+  if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent;
+  setButtonLoading(btn, true);
+
   try {
     const result = await window.changePin(session.email, oldPin, newPin);
     if (result.success) {
@@ -243,15 +278,18 @@ async function handleChangePin() {
       document.getElementById('loginForm').style.display = 'block';
       document.getElementById('signupForm').style.display = 'none';
       document.getElementById('toggleText').style.display = 'block';
+      setButtonLoading(btn, false);
       // Logout and redirect to login
       window.logout();
     } else {
       errorEl.textContent = result.message || 'PIN change failed.';
       errorEl.style.display = 'block';
+      setButtonLoading(btn, false);
     }
   } catch (err) {
     errorEl.textContent = 'Server connection error.';
     errorEl.style.display = 'block';
+    setButtonLoading(btn, false);
   }
 }
 
@@ -293,7 +331,7 @@ window.addLogoutButton = function() {
 };
 
 // Override initialize to add logout button after SAT engine loads
-console.log('✅ ui.js loaded (English version with logout button)');
+console.log('✅ ui.js loaded (with button feedback)');
 
 const originalInit = window.initialize;
 window.initialize = function() {
