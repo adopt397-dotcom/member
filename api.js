@@ -1,4 +1,4 @@
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbxmqRaTC5SlbstqyWcshgfEt99HyomTMq0BAZr5aXFp9EDJNGRIy1pgRZJA3-xNrm29/exec';
+const GAS_URL = 'https://script.google.com/macros/s/AKfycbxkRMqjijBEcpsLu6mN8uCngu1lMWVbqi0M9LdNO-yX26GQNOymWNLI7mGX24_J_A67/exec';
 
 window.login = async function(email, pin) {
   const response = await fetch(GAS_URL, {
