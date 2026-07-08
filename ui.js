@@ -1,10 +1,10 @@
 window.renderLoginOverlay = async function() {
-  // 중복 생성 방지
+  // Prevent duplicate overlay
   if (document.getElementById('loginOverlay')) {
     return;
   }
 
-  // 이미 로그인되어 있으면 오버레이 없이 바로 시작
+  // If already logged in, skip overlay
   if (window.isLoggedIn()) {
     if (typeof window.initialize === 'function') {
       window.initialize();
@@ -12,7 +12,7 @@ window.renderLoginOverlay = async function() {
     return;
   }
 
-  // 로그인/회원가입 오버레이 HTML
+  // Login/Signup Overlay HTML
   const overlay = document.createElement('div');
   overlay.id = 'loginOverlay';
   
@@ -30,47 +30,47 @@ window.renderLoginOverlay = async function() {
   
   overlay.innerHTML = `
     <div style="background:#fff;padding:40px;border-radius:16px;max-width:400px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,0.3);">
-      <h2 style="margin-bottom:20px;color:#1a1a2e;">🔐 SAT 로그인</h2>
+      <h2 style="margin-bottom:20px;color:#1a1a2e;">🔐 SAT Login</h2>
       
-      <!-- 로그인 폼 -->
+      <!-- Login Form -->
       <div id="loginForm">
-        <input id="loginEmail" type="email" placeholder="이메일을 입력해주세요" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
-        <input id="loginPin" type="password" placeholder="PIN (4자리)를 입력해주세요" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
+        <input id="loginEmail" type="email" placeholder="Enter your email" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
+        <input id="loginPin" type="password" placeholder="Enter your PIN (4 digits)" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
         <div id="loginError" style="color:red;font-size:14px;margin-bottom:12px;display:none;"></div>
-        <button id="loginBtn" style="width:100%;padding:14px;background:#f5a623;color:#fff;border:none;border-radius:8px;font-size:18px;font-weight:700;cursor:pointer;">로그인</button>
+        <button id="loginBtn" style="width:100%;padding:14px;background:#f5a623;color:#fff;border:none;border-radius:8px;font-size:18px;font-weight:700;cursor:pointer;">Login</button>
       </div>
       
-      <!-- 회원가입 폼 (숨김) -->
+      <!-- Signup Form (hidden) -->
       <div id="signupForm" style="display:none;">
-        <input id="signupEmail" type="email" placeholder="이메일을 입력해주세요" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
-        <input id="signupName" type="text" placeholder="이름을 입력해주세요" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
-        <input id="signupPin" type="password" placeholder="PIN (4자리)를 입력해주세요" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
-        <input id="signupPinConfirm" type="password" placeholder="PIN을 다시 입력해주세요" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
+        <input id="signupEmail" type="email" placeholder="Enter your email" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
+        <input id="signupName" type="text" placeholder="Enter your name" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
+        <input id="signupPin" type="password" placeholder="Create PIN (4 digits)" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
+        <input id="signupPinConfirm" type="password" placeholder="Confirm PIN" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
         <div id="signupError" style="color:red;font-size:14px;margin-bottom:12px;display:none;"></div>
-        <button id="signupBtn" style="width:100%;padding:14px;background:#27ae60;color:#fff;border:none;border-radius:8px;font-size:18px;font-weight:700;cursor:pointer;">회원가입</button>
+        <button id="signupBtn" style="width:100%;padding:14px;background:#27ae60;color:#fff;border:none;border-radius:8px;font-size:18px;font-weight:700;cursor:pointer;">Sign Up</button>
       </div>
       
-      <!-- 전환 버튼 -->
+      <!-- Toggle Link -->
       <div style="margin-top:12px;font-size:14px;color:#666;">
-        <span id="toggleText">계정이 없으신가요? <a href="#" id="toggleLink" style="color:#f5a623;font-weight:600;text-decoration:none;">회원가입</a></span>
+        <span id="toggleText">Don't have an account? <a href="#" id="toggleLink" style="color:#f5a623;font-weight:600;text-decoration:none;">Sign Up</a></span>
       </div>
       
-      <!-- PIN 변경 폼 (숨김) -->
+      <!-- PIN Change Form (hidden) -->
       <div id="changePinForm" style="display:none;margin-top:15px;border-top:1px solid #eee;padding-top:15px;">
-        <h3 style="font-size:16px;color:#1a1a2e;">🔑 PIN 변경</h3>
-        <input id="oldPin" type="password" placeholder="현재 PIN" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
-        <input id="newPin" type="password" placeholder="새 PIN (4자리)" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
-        <input id="newPinConfirm" type="password" placeholder="새 PIN 확인" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
+        <h3 style="font-size:16px;color:#1a1a2e;">🔑 Change PIN</h3>
+        <input id="oldPin" type="password" placeholder="Current PIN" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
+        <input id="newPin" type="password" placeholder="New PIN (4 digits)" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
+        <input id="newPinConfirm" type="password" placeholder="Confirm new PIN" style="width:100%;padding:12px;margin-bottom:12px;border:2px solid #ddd;border-radius:8px;font-size:16px;box-sizing:border-box;">
         <div id="changePinError" style="color:red;font-size:14px;margin-bottom:12px;display:none;"></div>
-        <button id="changePinBtn" style="width:100%;padding:14px;background:#3498db;color:#fff;border:none;border-radius:8px;font-size:18px;font-weight:700;cursor:pointer;">PIN 변경</button>
-        <button id="changePinCancelBtn" style="width:100%;padding:10px;margin-top:8px;background:#e74c3c;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;">취소</button>
+        <button id="changePinBtn" style="width:100%;padding:14px;background:#3498db;color:#fff;border:none;border-radius:8px;font-size:18px;font-weight:700;cursor:pointer;">Change PIN</button>
+        <button id="changePinCancelBtn" style="width:100%;padding:10px;margin-top:8px;background:#e74c3c;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;">Cancel</button>
       </div>
     </div>
   `;
   
   document.body.appendChild(overlay);
 
-  // 로그인 버튼 이벤트
+  // Login button event
   document.getElementById('loginBtn').addEventListener('click', handleLogin);
   document.getElementById('loginPin').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') handleLogin();
@@ -79,16 +79,16 @@ window.renderLoginOverlay = async function() {
     if (e.key === 'Enter') handleLogin();
   });
 
-  // 회원가입 버튼 이벤트
+  // Signup button event
   document.getElementById('signupBtn').addEventListener('click', handleSignup);
   document.getElementById('signupPinConfirm').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') handleSignup();
   });
 
-  // 전환 버튼 이벤트
+  // Toggle event
   document.getElementById('toggleLink').addEventListener('click', toggleForm);
 
-  // PIN 변경 버튼 이벤트
+  // PIN Change button events
   document.getElementById('changePinBtn').addEventListener('click', handleChangePin);
   document.getElementById('changePinCancelBtn').addEventListener('click', () => {
     document.getElementById('changePinForm').style.display = 'none';
@@ -98,14 +98,14 @@ window.renderLoginOverlay = async function() {
   });
 }
 
-// 로그인 처리
+// Login handler
 async function handleLogin() {
   const email = document.getElementById('loginEmail').value.trim();
   const pin = document.getElementById('loginPin').value.trim();
   const errorEl = document.getElementById('loginError');
 
   if (!email || !pin) {
-    errorEl.textContent = '이메일과 PIN을 모두 입력해주세요.';
+    errorEl.textContent = 'Please enter both email and PIN.';
     errorEl.style.display = 'block';
     return;
   }
@@ -120,16 +120,16 @@ async function handleLogin() {
         window.initialize();
       }
     } else {
-      errorEl.textContent = result.message || '로그인 실패했습니다.';
+      errorEl.textContent = result.message || 'Login failed.';
       errorEl.style.display = 'block';
     }
   } catch (err) {
-    errorEl.textContent = '서버 연결 오류가 발생했습니다.';
+    errorEl.textContent = 'Server connection error.';
     errorEl.style.display = 'block';
   }
 }
 
-// 회원가입 처리
+// Signup handler
 async function handleSignup() {
   const email = document.getElementById('signupEmail').value.trim();
   const name = document.getElementById('signupName').value.trim();
@@ -138,19 +138,19 @@ async function handleSignup() {
   const errorEl = document.getElementById('signupError');
 
   if (!email || !name || !pin || !pinConfirm) {
-    errorEl.textContent = '모든 항목을 입력해주세요.';
+    errorEl.textContent = 'Please fill in all fields.';
     errorEl.style.display = 'block';
     return;
   }
 
   if (pin.length !== 4 || !/^\d{4}$/.test(pin)) {
-    errorEl.textContent = 'PIN은 4자리 숫자여야 합니다.';
+    errorEl.textContent = 'PIN must be 4 digits.';
     errorEl.style.display = 'block';
     return;
   }
 
   if (pin !== pinConfirm) {
-    errorEl.textContent = 'PIN이 일치하지 않습니다.';
+    errorEl.textContent = 'PINs do not match.';
     errorEl.style.display = 'block';
     return;
   }
@@ -159,24 +159,24 @@ async function handleSignup() {
     const result = await window.signup(email, pin, name);
     if (result.success) {
       errorEl.style.display = 'none';
-      alert('회원가입이 완료되었습니다. 관리자 승인 후 로그인이 가능합니다.');
-      // 로그인 폼으로 전환
+      alert('Signup complete. Awaiting admin approval.');
+      // Switch to login form
       document.getElementById('signupForm').style.display = 'none';
       document.getElementById('loginForm').style.display = 'block';
       document.getElementById('toggleText').style.display = 'block';
       document.getElementById('loginEmail').value = email;
       document.getElementById('loginPin').value = '';
     } else {
-      errorEl.textContent = result.message || '회원가입 실패했습니다.';
+      errorEl.textContent = result.message || 'Signup failed.';
       errorEl.style.display = 'block';
     }
   } catch (err) {
-    errorEl.textContent = '서버 연결 오류가 발생했습니다.';
+    errorEl.textContent = 'Server connection error.';
     errorEl.style.display = 'block';
   }
 }
 
-// 폼 전환 (로그인 ↔ 회원가입)
+// Toggle between Login and Signup forms
 function toggleForm(e) {
   e.preventDefault();
   const loginForm = document.getElementById('loginForm');
@@ -188,26 +188,26 @@ function toggleForm(e) {
   if (loginForm.style.display === 'none') {
     loginForm.style.display = 'block';
     signupForm.style.display = 'none';
-    toggleText.innerHTML = '계정이 없으신가요? <a href="#" id="toggleLink" style="color:#f5a623;font-weight:600;text-decoration:none;">회원가입</a>';
+    toggleText.innerHTML = 'Don\'t have an account? <a href="#" id="toggleLink" style="color:#f5a623;font-weight:600;text-decoration:none;">Sign Up</a>';
     loginError.style.display = 'none';
     signupError.style.display = 'none';
   } else {
     loginForm.style.display = 'none';
     signupForm.style.display = 'block';
-    toggleText.innerHTML = '이미 계정이 있으신가요? <a href="#" id="toggleLink" style="color:#f5a623;font-weight:600;text-decoration:none;">로그인</a>';
+    toggleText.innerHTML = 'Already have an account? <a href="#" id="toggleLink" style="color:#f5a623;font-weight:600;text-decoration:none;">Login</a>';
     loginError.style.display = 'none';
     signupError.style.display = 'none';
   }
 
-  // 새 toggleLink에 이벤트 다시 연결
+  // Re-attach event to new toggleLink
   document.getElementById('toggleLink').addEventListener('click', toggleForm);
 }
 
-// PIN 변경 처리
+// PIN Change handler
 async function handleChangePin() {
   const session = window.getSession();
   if (!session) {
-    alert('로그인이 필요합니다.');
+    alert('Please login first.');
     return;
   }
 
@@ -217,19 +217,19 @@ async function handleChangePin() {
   const errorEl = document.getElementById('changePinError');
 
   if (!oldPin || !newPin || !newPinConfirm) {
-    errorEl.textContent = '모든 항목을 입력해주세요.';
+    errorEl.textContent = 'Please fill in all fields.';
     errorEl.style.display = 'block';
     return;
   }
 
   if (newPin.length !== 4 || !/^\d{4}$/.test(newPin)) {
-    errorEl.textContent = '새 PIN은 4자리 숫자여야 합니다.';
+    errorEl.textContent = 'New PIN must be 4 digits.';
     errorEl.style.display = 'block';
     return;
   }
 
   if (newPin !== newPinConfirm) {
-    errorEl.textContent = '새 PIN이 일치하지 않습니다.';
+    errorEl.textContent = 'New PINs do not match.';
     errorEl.style.display = 'block';
     return;
   }
@@ -238,35 +238,33 @@ async function handleChangePin() {
     const result = await window.changePin(session.email, oldPin, newPin);
     if (result.success) {
       errorEl.style.display = 'none';
-      alert('PIN이 변경되었습니다.');
+      alert('PIN changed successfully.');
       document.getElementById('changePinForm').style.display = 'none';
       document.getElementById('loginForm').style.display = 'block';
       document.getElementById('signupForm').style.display = 'none';
       document.getElementById('toggleText').style.display = 'block';
-      // 로그아웃 후 재로그인 유도
+      // Logout and redirect to login
       window.logout();
     } else {
-      errorEl.textContent = result.message || 'PIN 변경 실패했습니다.';
+      errorEl.textContent = result.message || 'PIN change failed.';
       errorEl.style.display = 'block';
     }
   } catch (err) {
-    errorEl.textContent = '서버 연결 오류가 발생했습니다.';
+    errorEl.textContent = 'Server connection error.';
     errorEl.style.display = 'block';
   }
 }
 
-// 로그아웃 버튼 (퀴즈 화면에 추가)
+// Add Logout Button to quiz screen
 window.addLogoutButton = function() {
-  // 이미 로그아웃 버튼이 있으면 추가하지 않음
   if (document.getElementById('logoutButton')) return;
 
-  // 퀴즈 메인 영역 상단에 로그아웃 버튼 추가
   const quizMain = document.getElementById('quizMain');
   if (!quizMain) return;
 
   const logoutBtn = document.createElement('button');
   logoutBtn.id = 'logoutButton';
-  logoutBtn.textContent = '🚪 로그아웃';
+  logoutBtn.textContent = '🚪 Logout';
   logoutBtn.style.cssText = `
     position: fixed;
     top: 70px;
@@ -286,7 +284,7 @@ window.addLogoutButton = function() {
   logoutBtn.onmouseover = function() { this.style.background = '#c0392b'; };
   logoutBtn.onmouseout = function() { this.style.background = '#e74c3c'; };
   logoutBtn.addEventListener('click', function() {
-    if (confirm('로그아웃하시겠습니까? 진행 상황은 저장됩니다.')) {
+    if (confirm('Logout? Your progress will be saved.')) {
       window.logout();
     }
   });
@@ -294,10 +292,9 @@ window.addLogoutButton = function() {
   document.body.appendChild(logoutBtn);
 };
 
-// 기존 renderLoginOverlay 덮어쓰기 방지
-console.log('✅ ui.js loaded (with logout button support)');
+// Override initialize to add logout button after SAT engine loads
+console.log('✅ ui.js loaded (English version with logout button)');
 
-// SAT 엔진 실행 후 로그아웃 버튼 추가
 const originalInit = window.initialize;
 window.initialize = function() {
   if (typeof originalInit === 'function') {
