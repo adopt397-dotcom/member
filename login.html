@@ -52,14 +52,15 @@
   </div>
 
   <!-- 0340: Password 변경 -->
-  <div class="test-section">
-    <h3>🔑 TEST 4: Change Password</h3>
-    <input id="changeEmail" type="email" placeholder="Email" value="student@gmail.com" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-    <input id="changeOldPassword" type="password" placeholder="Current Password" value="1234" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-    <input id="changeNewPassword" type="password" placeholder="New Password (min 4 characters)" value="5678" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-    <button id="testChangePasswordBtn">Change Password</button>
-    <div id="changePasswordResult" class="result">Click Change Password to test.</div>
-  </div>
+<div class="test-section">
+  <h3>🔑 TEST 4: Change Password</h3>
+  <input id="changeEmail" type="email" placeholder="Email" value="student@gmail.com" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+  <input id="changeOldPassword" type="password" placeholder="Current Password" value="1234" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+  <input id="changeNewPassword" type="password" placeholder="New Password (min 4 characters)" value="5678" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+  <input id="changeNewPasswordConfirm" type="password" placeholder="Confirm New Password" value="5678" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+  <button id="testChangePasswordBtn">Change Password</button>
+  <div id="changePasswordResult" class="result">Click Change Password to test.</div>
+</div>
   <!-- 블록 0300: 테스트 섹션들 끝 -->
 
   <!-- 블록 0400-0900: JavaScript 시작 -->
@@ -133,7 +134,7 @@
     });
 
     // 블록 0900: Password 변경 (수정 완료)
-  // 블록 0900: Password 변경
+// 블록 0900: Password 변경
 document.getElementById('testChangePasswordBtn').addEventListener('click', async function() {
   const email = document.getElementById('changeEmail').value.trim();
   const oldPassword = document.getElementById('changeOldPassword').value.trim();
@@ -158,7 +159,7 @@ document.getElementById('testChangePasswordBtn').addEventListener('click', async
     const response = await fetch(GAS_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ action: 'changePin', email, oldPin: oldPassword, newPin: newPassword })
+      body: JSON.stringify({ action: 'changePassword', email, oldPassword, newPassword })
     });
     const data = await response.json();
     showResult('changePasswordResult', JSON.stringify(data, null, 2), data.success);
