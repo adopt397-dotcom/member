@@ -14,6 +14,9 @@
     .result { background: #f8f9fa; padding: 15px; border-radius: 6px; margin-top: 10px; white-space: pre-wrap; font-size: 14px; }
     .success { color: #27ae60; }
     .error { color: #e74c3c; }
+    .password-wrapper { position: relative; width: 100%; }
+    .password-wrapper input { width: 100%; padding: 10px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; padding-right: 40px; }
+    .toggle-password { position: absolute; right: 10px; top: 25%; transform: translateY(-25%); cursor: pointer; font-size: 20px; user-select: none; }
   </style>
   <!-- 블록 0100: 스타일 끝 -->
 </head>
@@ -24,26 +27,34 @@
   <!-- 블록 0200: 헤더 끝 -->
 
   <!-- 블록 0300: 테스트 섹션들 시작 -->
-<!-- 0310: 로그인 -->
-<div class="test-section">
-  <h3>🔐 TEST 1: Login</h3>
-  <input id="loginEmail" type="email" placeholder="Email" value="student@gmail.com" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <input id="loginPassword" type="password" placeholder="Enter your password" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <button id="testLoginBtn">Login</button>
-  <div id="loginResult" class="result">Click Login to test.</div>
-</div>
+  <!-- 0310: 로그인 -->
+  <div class="test-section">
+    <h3>🔐 TEST 1: Login</h3>
+    <input id="loginEmail" type="email" placeholder="Email" value="student@gmail.com" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+    <div class="password-wrapper">
+      <input id="loginPassword" type="password" placeholder="Enter your password">
+      <span class="toggle-password" id="toggleLoginPassword">👁️</span>
+    </div>
+    <button id="testLoginBtn">Login</button>
+    <div id="loginResult" class="result">Click Login to test.</div>
+  </div>
 
-  
- <!-- 0320: 회원가입 -->
-<div class="test-section">
-  <h3>📝 TEST 2: Signup</h3>
-  <input id="signupEmail" type="email" placeholder="Enter your email" value="testuser@test.com" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <input id="signupName" type="text" placeholder="Enter your name" value="Test User" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <input id="signupPassword" type="password" placeholder="Create password (min 4 characters)" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <input id="signupPasswordConfirm" type="password" placeholder="Confirm password" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <button id="testSignupBtn">Sign Up</button>
-  <div id="signupResult" class="result">Click Sign Up to test.</div>
-</div>
+  <!-- 0320: 회원가입 -->
+  <div class="test-section">
+    <h3>📝 TEST 2: Signup</h3>
+    <input id="signupEmail" type="email" placeholder="Enter your email" value="testuser@test.com" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+    <input id="signupName" type="text" placeholder="Enter your name" value="Test User" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+    <div class="password-wrapper">
+      <input id="signupPassword" type="password" placeholder="Create password (min 4 characters)">
+      <span class="toggle-password" id="toggleSignupPassword">👁️</span>
+    </div>
+    <div class="password-wrapper">
+      <input id="signupPasswordConfirm" type="password" placeholder="Confirm password">
+      <span class="toggle-password" id="toggleSignupPasswordConfirm">👁️</span>
+    </div>
+    <button id="testSignupBtn">Sign Up</button>
+    <div id="signupResult" class="result">Click Sign Up to test.</div>
+  </div>
 
   <!-- 0330: 상태확인 -->
   <div class="test-section">
@@ -52,30 +63,54 @@
     <div id="statusResult" class="result">Click Check Status.</div>
   </div>
 
-<!-- 0340: Password 변경 -->
-<div class="test-section">
-  <h3>🔑 TEST 4: Change Password</h3>
-  <input id="changeEmail" type="email" placeholder="Enter your email" value="student@gmail.com" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <input id="changeOldPassword" type="password" placeholder="Enter current password" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <input id="changeNewPassword" type="password" placeholder="Enter new password (min 4 characters)" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <input id="changeNewPasswordConfirm" type="password" placeholder="Confirm new password" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <button id="testChangePasswordBtn">Change Password</button>
-  <div id="changePasswordResult" class="result">Click Change Password to test.</div>
-</div>
+  <!-- 0340: Password 변경 -->
+  <div class="test-section">
+    <h3>🔑 TEST 4: Change Password</h3>
+    <input id="changeEmail" type="email" placeholder="Enter your email" value="student@gmail.com" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+    <div class="password-wrapper">
+      <input id="changeOldPassword" type="password" placeholder="Enter current password">
+      <span class="toggle-password" id="toggleChangeOldPassword">👁️</span>
+    </div>
+    <div class="password-wrapper">
+      <input id="changeNewPassword" type="password" placeholder="Enter new password (min 4 characters)">
+      <span class="toggle-password" id="toggleChangeNewPassword">👁️</span>
+    </div>
+    <div class="password-wrapper">
+      <input id="changeNewPasswordConfirm" type="password" placeholder="Confirm new password">
+      <span class="toggle-password" id="toggleChangeNewPasswordConfirm">👁️</span>
+    </div>
+    <button id="testChangePasswordBtn">Change Password</button>
+    <div id="changePasswordResult" class="result">Click Change Password to test.</div>
+  </div>
   <!-- 블록 0300: 테스트 섹션들 끝 -->
 
-  <!-- 블록 0400-0900: JavaScript 시작 -->
+  <!-- 블록 0400-1100: JavaScript 시작 -->
   <script>
     // 블록 0400: 설정
-   // 블록 0400: 설정
-// 블록 0400: 설정
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbw-I6qPoy8bgXHyDnMhN0DG7EErk18UAmPce8sYKTmyp0e8KE1r1AsazpQyRCx_Xs4Q/exec';
- 
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbw-I6qPoy8bgXHyDnMhN0DG7EErk18UAmPce8sYKTmyp0e8KE1r1AsazpQyRCx_Xs4Q/exec';
+
     // 블록 0500: 공통 함수
     function showResult(elementId, message, isSuccess) {
       const el = document.getElementById(elementId);
       el.textContent = message;
       el.className = 'result ' + (isSuccess ? 'success' : 'error');
+    }
+
+    // 블록 1000: 비밀번호 표시 토글 함수
+    function togglePasswordVisibility(inputId, toggleId) {
+      const input = document.getElementById(inputId);
+      const toggle = document.getElementById(toggleId);
+      if (input && toggle) {
+        toggle.addEventListener('click', function() {
+          if (input.type === 'password') {
+            input.type = 'text';
+            toggle.textContent = '🙈';
+          } else {
+            input.type = 'password';
+            toggle.textContent = '👁️';
+          }
+        });
+      }
     }
 
     // 블록 0600: 로그인
@@ -169,8 +204,17 @@ const GAS_URL = 'https://script.google.com/macros/s/AKfycbw-I6qPoy8bgXHyDnMhN0DG
         showResult('changePasswordResult', '❌ Error: ' + err.message, false);
       }
     });
-  </script>
-  <!-- 블록 0400-0900: JavaScript 끝 -->
 
+    // 블록 1100: 토글 이벤트 연결
+    document.addEventListener('DOMContentLoaded', function() {
+      togglePasswordVisibility('loginPassword', 'toggleLoginPassword');
+      togglePasswordVisibility('signupPassword', 'toggleSignupPassword');
+      togglePasswordVisibility('signupPasswordConfirm', 'toggleSignupPasswordConfirm');
+      togglePasswordVisibility('changeOldPassword', 'toggleChangeOldPassword');
+      togglePasswordVisibility('changeNewPassword', 'toggleChangeNewPassword');
+      togglePasswordVisibility('changeNewPasswordConfirm', 'toggleChangeNewPasswordConfirm');
+    });
+  </script>
+  <!-- 블록 0400-1100: JavaScript 끝 -->
 </body>
 </html>
