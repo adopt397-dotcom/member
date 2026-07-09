@@ -878,37 +878,60 @@
             }
         }
 
-        // HTML-0470: 이벤트 바인딩 및 초기화
-        document.addEventListener('DOMContentLoaded', function() {
-            initTabs();
+        // HTML-<!-- ============================== -->
+<!-- HTML-0470: 이벤트 바인딩 및 초기화 (소분류) -->
+<!-- ============================== -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        initTabs();
 
-            togglePasswordVisibility('loginPassword', 'toggleLoginPassword');
-            togglePasswordVisibility('signupPin', 'toggleSignupPin');
-            togglePasswordVisibility('signupPinConfirm', 'toggleSignupPinConfirm');
-            togglePasswordVisibility('changeOldPin', 'toggleChangeOldPin');
-            togglePasswordVisibility('changeNewPin', 'toggleChangeNewPin');
-            togglePasswordVisibility('changeNewPinConfirm', 'toggleChangeNewPinConfirm');
+        // 로그인 폼 토글
+        const loginPasswordInput = document.getElementById('loginPassword');
+        const toggleLoginPassword = document.getElementById('toggleLoginPassword');
+        if (loginPasswordInput && toggleLoginPassword) {
+            toggleLoginPassword.addEventListener('click', function() {
+                if (loginPasswordInput.type === 'password') {
+                    loginPasswordInput.type = 'text';
+                    toggleLoginPassword.textContent = '🙈';
+                } else {
+                    loginPasswordInput.type = 'password';
+                    toggleLoginPassword.textContent = '👁️';
+                }
+            });
+        }
 
-            document.getElementById('testLoginBtn').addEventListener('click', handleLogin);
-            document.getElementById('loginPassword').addEventListener('keypress', function(e) {
+        togglePasswordVisibility('signupPin', 'toggleSignupPin');
+        togglePasswordVisibility('signupPinConfirm', 'toggleSignupPinConfirm');
+        togglePasswordVisibility('changeOldPin', 'toggleChangeOldPin');
+        togglePasswordVisibility('changeNewPin', 'toggleChangeNewPin');
+        togglePasswordVisibility('changeNewPinConfirm', 'toggleChangeNewPinConfirm');
+
+        const loginBtn = document.getElementById('testLoginBtn');
+        const loginPassword = document.getElementById('loginPassword');
+        const loginEmail = document.getElementById('loginEmail');
+
+        if (loginBtn) loginBtn.addEventListener('click', handleLogin);
+        if (loginPassword) {
+            loginPassword.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') handleLogin();
             });
-            document.getElementById('loginEmail').addEventListener('keypress', function(e) {
+        }
+        if (loginEmail) {
+            loginEmail.addEventListener('keypress', function(e) {
                 if (e.key === 'Enter') handleLogin();
             });
+        }
 
-            document.getElementById('testSignupBtn').addEventListener('click', handleSignup);
-            document.getElementById('signupPinConfirm').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') handleSignup();
-            });
-
-            document.getElementById('testChangePinBtn').addEventListener('click', handleChangePin);
-            document.getElementById('changeNewPinConfirm').addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') handleChangePin();
-            });
+        document.getElementById('testSignupBtn').addEventListener('click', handleSignup);
+        document.getElementById('signupPinConfirm').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') handleSignup();
         });
 
-        console.log('✅ HTML-0400: UI controls loaded.');
-    </script>
-</body>
-</html>
+        document.getElementById('testChangePinBtn').addEventListener('click', handleChangePin);
+        document.getElementById('changeNewPinConfirm').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') handleChangePin();
+        });
+    });
+
+    console.log('✅ HTML-0400: UI controls loaded.');
+</script>
