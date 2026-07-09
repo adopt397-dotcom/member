@@ -79,14 +79,14 @@ window.getCurrentUser = function() {
 // AUTH-0220: 로그아웃 (logout) - 중분류
 // ==================================================
 // 🔍 찾기: AUTH-0220
-// 📝 설명: localStorage에서 세션 삭제 후 로그인 페이지로 이동
+// 📝 설명: localStorage에서 세션 삭제 후 인증 페이지로 이동
 // 🛠️ 수정 시: 로그아웃 후 이동할 페이지 변경 시 수정
 // ==================================================
 window.logout = function() {
     console.log('🚪 Logging out...');
     localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('user');
-    window.location.href = '/member/login.html';
+    window.location.href = 'https://gongboo.tilda.ws/login';
 };
 
 console.log('✅ auth.js loaded.');
