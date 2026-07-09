@@ -679,17 +679,16 @@
         <h1>GongBoo.org</h1>
         <p class="subtitle">Member Service</p>
 
-        <!-- ====================================================================== -->
-        <!-- HTML-0300: 탭 메뉴 (대분류) -->
-        <!-- ====================================================================== -->
-        <!-- 🔍 찾기: HTML-0300 -->
-        <!-- 📝 설명: 로그인 / 회원가입 / PIN 변경 탭 -->
-        <!-- ====================================================================== -->
-        <div class="tabs">
-            <button class="tab-btn active" data-tab="loginTab">Sign In</button>
-            <button class="tab-btn" data-tab="signupTab">Sign Up</button>
-            <button class="tab-btn" data-tab="changeTab">Change PIN</button>
-        </div>
+       <!-- ====================================================================== -->
+<!-- HTML-0300: 탭 메뉴 (대분류) -->
+<!-- ====================================================================== -->
+<!-- 🔍 찾기: HTML-0300 -->
+<!-- 📝 설명: 회원가입 / PIN 변경 탭 (Login 탭 삭제) -->
+<!-- ====================================================================== -->
+<div class="tabs">
+    <button class="tab-btn active" data-tab="signupTab">Sign Up</button>
+    <button class="tab-btn" data-tab="changeTab">Change Password</button>
+</div>
 
         <!-- ====================================================================== -->
         <!-- HTML-0310: 로그인 폼 (중분류) -->
@@ -867,44 +866,43 @@
         }
     </script>
 
-    <!-- ============================== -->
-    <!-- HTML-0440: 로그인 처리 (handleLogin) - 소분류 -->
-    <!-- ============================== -->
-    <script>
-        async function handleLogin() {
-            const email = document.getElementById('loginEmail').value.trim();
-            const pin = document.getElementById('loginPin').value.trim();
-            const btn = document.getElementById('testLoginBtn');
+  // ==============================
+// HTML-0440: 로그인 처리 (handleLogin) - 소분류
+// ==============================
+<script>
+async function handleLogin() {
+    const email = document.getElementById('loginEmail').value.trim();
+    const pin = document.getElementById('loginPin').value.trim();
+    const btn = document.getElementById('testLoginBtn');
 
-            if (!email || !pin) {
-                showResult('loginResult', 'Please enter both email and PIN.', false);
-                return;
-            }
+    if (!email || !pin) {
+        showResult('loginResult', 'Please enter both email and PIN.', false);
+        return;
+    }
 
-            btn.disabled = true;
-            btn.textContent = '⏳ Processing...';
+    btn.disabled = true;
+    btn.textContent = '⏳ Processing...';
 
-            try {
-                const data = await window.login(email, pin);
-                if (data.success) {
-                    window.saveSession(email, data.name || 'User');
-                    showResult('loginResult', '✅ Welcome, ' + (data.name || 'User') + '!', true);
-                    btn.disabled = false;
-                    btn.textContent = 'Login';
-                    // 로그인 성공 후 이동할 페이지 (필요 시 설정)
-                    // window.location.href = '/tilda.cc.html';
-                } else {
-                    showResult('loginResult', '❌ ' + (data.message || 'Login failed.'), false);
-                    btn.disabled = false;
-                    btn.textContent = 'Login';
-                }
-            } catch (err) {
-                showResult('loginResult', '❌ Server connection error.', false);
-                btn.disabled = false;
-                btn.textContent = 'Login';
-            }
+    try {
+        const data = await window.login(email, pin);
+        if (data.success) {
+            window.saveSession(email, data.name || 'User');
+            showResult('loginResult', '✅ Welcome, ' + (data.name || 'User') + '!', true);
+            btn.disabled = false;
+            btn.textContent = 'Login';
+            window.location.href = 'https://gongboo.tilda.ws/login2';
+        } else {
+            showResult('loginResult', '❌ ' + (data.message || 'Login failed.'), false);
+            btn.disabled = false;
+            btn.textContent = 'Login';
         }
-    </script>
+    } catch (err) {
+        showResult('loginResult', '❌ Server connection error.', false);
+        btn.disabled = false;
+        btn.textContent = 'Login';
+    }
+}
+</script>
 
     <!-- ============================== -->
     <!-- HTML-0450: 회원가입 처리 (handleSignup) - 소분류 -->
