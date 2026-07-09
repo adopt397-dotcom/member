@@ -8,10 +8,6 @@
 <!-- ====================================================================== -->
 <!-- HTML-0100: CSS 스타일 (대분류) -->
 <!-- ====================================================================== -->
-<!-- 🔍 찾기: HTML-0100 -->
-<!-- 📝 설명: 로그인 페이지 전체 스타일 -->
-<!-- 🛠️ 수정 시: 디자인 변경 시 이 블록 수정 -->
-<!-- ====================================================================== -->
 <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
@@ -132,6 +128,11 @@
         box-shadow: 0 4px 12px rgba(245, 166, 35, 0.35);
     }
     .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+    .btn-signup {
+        padding: 16px;
+        font-size: 18px;
+        min-height: 56px;
+    }
     .result-box {
         background: #F7FAFC;
         padding: 14px;
@@ -163,11 +164,6 @@
         color: #718096;
         margin-top: 18px;
     }
-    .btn-signup {
-        padding: 16px;
-        font-size: 18px;
-        min-height: 56px;
-    }
     @media (max-width: 480px) {
         .container { padding: 24px 18px; }
         h1 { font-size: 24px; }
@@ -181,17 +177,11 @@
 <!-- ====================================================================== -->
 <!-- HTML-0200: 헤더/로고 (대분류) -->
 <!-- ====================================================================== -->
-<!-- 🔍 찾기: HTML-0200 -->
-<!-- 📝 설명: 사이트 로고 및 서비스명 표시 -->
-<!-- ====================================================================== -->
 <h1>GongBoo.org</h1>
 <p class="subtitle">Member Service</p>
 
 <!-- ====================================================================== -->
 <!-- HTML-0300: 탭 메뉴 (대분류) -->
-<!-- ====================================================================== -->
-<!-- 🔍 찾기: HTML-0300 -->
-<!-- 📝 설명: Login / Sign Up / Change Password 3개 탭 -->
 <!-- ====================================================================== -->
 <div class="tabs">
     <button class="tab-btn active" data-tab="loginTab">Login</button>
@@ -202,19 +192,16 @@
 <!-- ====================================================================== -->
 <!-- HTML-0310: 로그인 폼 (중분류) -->
 <!-- ====================================================================== -->
-<!-- 🔍 찾기: HTML-0310 -->
-<!-- 📝 설명: 이메일 + PIN 로그인 폼 -->
-<!-- ====================================================================== -->
 <div id="loginTab" class="tab-content">
     <div class="form-group">
         <label>E-mail</label>
         <input id="loginEmail" type="email" placeholder="example@email.com">
     </div>
     <div class="form-group">
-        <label>PIN (4 digits)</label>
+        <label>Password</label>
         <div class="password-wrapper">
-            <input id="loginPin" type="password" placeholder="Enter your PIN" maxlength="4">
-            <span class="toggle-password" id="toggleLoginPin">👁️</span>
+            <input id="loginPassword" type="password" placeholder="Enter your password">
+            <span class="toggle-password" id="toggleLoginPassword">👁️</span>
         </div>
     </div>
     <button class="btn-primary" id="testLoginBtn">Login</button>
@@ -223,9 +210,6 @@
 
 <!-- ====================================================================== -->
 <!-- HTML-0320: 회원가입 폼 (중분류) -->
-<!-- ====================================================================== -->
-<!-- 🔍 찾기: HTML-0320 -->
-<!-- 📝 설명: 새 사용자 등록 폼 (이메일/이름/PIN) -->
 <!-- ====================================================================== -->
 <div id="signupTab" class="tab-content form-hidden">
     <div class="form-group">
@@ -237,17 +221,17 @@
         <input id="signupName" type="text" placeholder="Your full name">
     </div>
     <div class="form-group">
-        <label>PIN (4 digits)</label>
+        <label>Password</label>
         <div class="password-wrapper">
-            <input id="signupPin" type="password" placeholder="Create PIN (4 digits)" maxlength="4">
-            <span class="toggle-password" id="toggleSignupPin">👁️</span>
+            <input id="signupPassword" type="password" placeholder="Create password (min 4 characters)">
+            <span class="toggle-password" id="toggleSignupPassword">👁️</span>
         </div>
     </div>
     <div class="form-group">
-        <label>Confirm PIN</label>
+        <label>Confirm Password</label>
         <div class="password-wrapper">
-            <input id="signupPinConfirm" type="password" placeholder="Confirm your PIN" maxlength="4">
-            <span class="toggle-password" id="toggleSignupPinConfirm">👁️</span>
+            <input id="signupPasswordConfirm" type="password" placeholder="Confirm your password">
+            <span class="toggle-password" id="toggleSignupPasswordConfirm">👁️</span>
         </div>
     </div>
     <button class="btn-primary btn-signup" id="testSignupBtn">Sign Up</button>
@@ -260,37 +244,34 @@
 <!-- ====================================================================== -->
 <!-- HTML-0330: 비밀번호 변경 폼 (중분류) -->
 <!-- ====================================================================== -->
-<!-- 🔍 찾기: HTML-0330 -->
-<!-- 📝 설명: 기존 PIN → 새 PIN 변경 폼 -->
-<!-- ====================================================================== -->
 <div id="changeTab" class="tab-content form-hidden">
     <div class="form-group">
         <label>E-mail</label>
         <input id="changeEmail" type="email" placeholder="example@email.com">
     </div>
     <div class="form-group">
-        <label>Current PIN</label>
+        <label>Current Password</label>
         <div class="password-wrapper">
-            <input id="changeOldPin" type="password" placeholder="Enter current PIN" maxlength="4">
-            <span class="toggle-password" id="toggleChangeOldPin">👁️</span>
+            <input id="changeOldPassword" type="password" placeholder="Enter current password">
+            <span class="toggle-password" id="toggleChangeOldPassword">👁️</span>
         </div>
     </div>
     <div class="form-group">
-        <label>New PIN (4 digits)</label>
+        <label>New Password (min 4 characters)</label>
         <div class="password-wrapper">
-            <input id="changeNewPin" type="password" placeholder="Enter new PIN" maxlength="4">
-            <span class="toggle-password" id="toggleChangeNewPin">👁️</span>
+            <input id="changeNewPassword" type="password" placeholder="Enter new password">
+            <span class="toggle-password" id="toggleChangeNewPassword">👁️</span>
         </div>
     </div>
     <div class="form-group">
-        <label>Confirm New PIN</label>
+        <label>Confirm New Password</label>
         <div class="password-wrapper">
-            <input id="changeNewPinConfirm" type="password" placeholder="Confirm new PIN" maxlength="4">
-            <span class="toggle-password" id="toggleChangeNewPinConfirm">👁️</span>
+            <input id="changeNewPasswordConfirm" type="password" placeholder="Confirm new password">
+            <span class="toggle-password" id="toggleChangeNewPasswordConfirm">👁️</span>
         </div>
     </div>
-    <button class="btn-primary" id="testChangePinBtn">Change PIN</button>
-    <div id="changePinResult" class="result-box">Waiting for PIN change.</div>
+    <button class="btn-primary" id="testChangePasswordBtn">Change Password</button>
+    <div id="changePasswordResult" class="result-box">Waiting for password change.</div>
     <div class="toggle-text">
         <button class="link-btn" id="gotoLoginFromChange">Back to Login</button>
     </div>
@@ -301,17 +282,25 @@
 <!-- ====================================================================== -->
 <!-- HTML-0400: JavaScript (대분류) -->
 <!-- ====================================================================== -->
-<!-- 🔍 찾기: HTML-0400 -->
-<!-- 📝 설명: 로그인 페이지 전체 JavaScript 로직 -->
-<!-- ====================================================================== -->
 
-<!-- ============================== -->
-<!-- HTML-0410: 비밀번호 토글 (소분류) -->
-<!-- ============================== -->
-<!-- 🔍 찾기: HTML-0410 -->
-<!-- 📝 설명: PIN 입력창 눈 아이콘 클릭 시 표시/숨김 -->
-<!-- ============================== -->
+<!-- config.js, api.js, auth.js 로드 -->
+<script src="config.js"></script>
+<script src="api.js"></script>
+<script src="auth.js"></script>
+
 <script>
+// ==============================
+// HTML-0410: 결과 표시 (소분류)
+// ==============================
+function showResult(elementId, message, isSuccess) {
+    const el = document.getElementById(elementId);
+    el.textContent = message;
+    el.className = 'result-box' + (isSuccess ? ' success' : ' error');
+}
+
+// ==============================
+// HTML-0420: 비밀번호 토글 (소분류)
+// ==============================
 function togglePasswordVisibility(inputId, toggleId) {
     const input = document.getElementById(inputId);
     const toggle = document.getElementById(toggleId);
@@ -329,10 +318,7 @@ function togglePasswordVisibility(inputId, toggleId) {
 }
 
 // ==============================
-// HTML-0420: 탭 전환 (소분류)
-// ==============================
-// 🔍 찾기: HTML-0420
-// 📝 설명: Login / Sign Up / Change Password 탭 전환
+// HTML-0430: 탭 전환 (소분류)
 // ==============================
 function initTabs() {
     const tabs = document.querySelectorAll('.tab-btn');
@@ -352,36 +338,32 @@ function initTabs() {
         });
     });
 
-    document.getElementById('gotoLoginFromSignup').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector('[data-tab="loginTab"]').click();
-    });
-    document.getElementById('gotoLoginFromChange').addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector('[data-tab="loginTab"]').click();
-    });
+    const gotoLoginFromSignup = document.getElementById('gotoLoginFromSignup');
+    const gotoLoginFromChange = document.getElementById('gotoLoginFromChange');
+    if (gotoLoginFromSignup) {
+        gotoLoginFromSignup.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('[data-tab="loginTab"]').click();
+        });
+    }
+    if (gotoLoginFromChange) {
+        gotoLoginFromChange.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('[data-tab="loginTab"]').click();
+        });
+    }
 }
 
 // ==============================
-// HTML-0430: 로그인 처리 (소분류)
+// HTML-0440: 로그인 처리 (소분류)
 // ==============================
-// 🔍 찾기: HTML-0430
-// 📝 설명: Login 버튼 클릭 시 API 호출 및 세션 저장
-// ==============================
-function showResult(elementId, message, isSuccess) {
-    const el = document.getElementById(elementId);
-    el.textContent = message;
-    el.className = 'result-box' + (isSuccess ? ' success' : ' error');
-}
-
 async function handleLogin() {
     const email = document.getElementById('loginEmail').value.trim();
-    const pin = document.getElementById('loginPin').value.trim();
-    const resultEl = document.getElementById('loginResult');
+    const password = document.getElementById('loginPassword').value.trim();
     const btn = document.getElementById('testLoginBtn');
 
-    if (!email || !pin) {
-        showResult('loginResult', 'Please enter both email and PIN.', false);
+    if (!email || !password) {
+        showResult('loginResult', 'Please enter both email and password.', false);
         return;
     }
 
@@ -389,7 +371,7 @@ async function handleLogin() {
     btn.textContent = '⏳ Processing...';
 
     try {
-        const data = await window.login(email, pin);
+        const data = await window.login(email, password);
         if (data.success) {
             window.saveSession(email, data.name || 'User');
             showResult('loginResult', '✅ Welcome, ' + (data.name || 'User') + '!', true);
@@ -409,30 +391,27 @@ async function handleLogin() {
 }
 
 // ==============================
-// HTML-0440: 회원가입 처리 (소분류)
-// ==============================
-// 🔍 찾기: HTML-0440
-// 📝 설명: Sign Up 버튼 클릭 시 API 호출
+// HTML-0450: 회원가입 처리 (소분류)
 // ==============================
 async function handleSignup() {
     const email = document.getElementById('signupEmail').value.trim();
     const name = document.getElementById('signupName').value.trim();
-    const pin = document.getElementById('signupPin').value.trim();
-    const pinConfirm = document.getElementById('signupPinConfirm').value.trim();
+    const password = document.getElementById('signupPassword').value.trim();
+    const passwordConfirm = document.getElementById('signupPasswordConfirm').value.trim();
     const btn = document.getElementById('testSignupBtn');
 
-    if (!email || !name || !pin || !pinConfirm) {
+    if (!email || !name || !password || !passwordConfirm) {
         showResult('signupResult', 'Please fill in all fields.', false);
         return;
     }
 
-    if (pin.length !== 4 || !/^\d{4}$/.test(pin)) {
-        showResult('signupResult', 'PIN must be exactly 4 digits.', false);
+    if (password.length < 4) {
+        showResult('signupResult', 'Password must be at least 4 characters.', false);
         return;
     }
 
-    if (pin !== pinConfirm) {
-        showResult('signupResult', 'PINs do not match.', false);
+    if (password !== passwordConfirm) {
+        showResult('signupResult', 'Passwords do not match.', false);
         return;
     }
 
@@ -440,15 +419,15 @@ async function handleSignup() {
     btn.textContent = '⏳ Processing...';
 
     try {
-        const data = await window.signup(email, pin, name);
+        const data = await window.signup(email, password, name);
         if (data.success) {
             showResult('signupResult', '✅ ' + data.message + ' (Awaiting admin approval)', true);
             btn.disabled = false;
             btn.textContent = 'Sign Up';
             document.getElementById('signupEmail').value = '';
             document.getElementById('signupName').value = '';
-            document.getElementById('signupPin').value = '';
-            document.getElementById('signupPinConfirm').value = '';
+            document.getElementById('signupPassword').value = '';
+            document.getElementById('signupPasswordConfirm').value = '';
             setTimeout(() => {
                 document.querySelector('[data-tab="loginTab"]').click();
             }, 2000);
@@ -465,30 +444,27 @@ async function handleSignup() {
 }
 
 // ==============================
-// HTML-0450: PIN 변경 처리 (소분류)
+// HTML-0460: 비밀번호 변경 처리 (소분류)
 // ==============================
-// 🔍 찾기: HTML-0450
-// 📝 설명: Change PIN 버튼 클릭 시 API 호출
-// ==============================
-async function handleChangePin() {
+async function handleChangePassword() {
     const email = document.getElementById('changeEmail').value.trim();
-    const oldPin = document.getElementById('changeOldPin').value.trim();
-    const newPin = document.getElementById('changeNewPin').value.trim();
-    const newPinConfirm = document.getElementById('changeNewPinConfirm').value.trim();
-    const btn = document.getElementById('testChangePinBtn');
+    const oldPassword = document.getElementById('changeOldPassword').value.trim();
+    const newPassword = document.getElementById('changeNewPassword').value.trim();
+    const newPasswordConfirm = document.getElementById('changeNewPasswordConfirm').value.trim();
+    const btn = document.getElementById('testChangePasswordBtn');
 
-    if (!email || !oldPin || !newPin || !newPinConfirm) {
-        showResult('changePinResult', 'Please fill in all fields.', false);
+    if (!email || !oldPassword || !newPassword || !newPasswordConfirm) {
+        showResult('changePasswordResult', 'Please fill in all fields.', false);
         return;
     }
 
-    if (newPin.length !== 4 || !/^\d{4}$/.test(newPin)) {
-        showResult('changePinResult', 'New PIN must be exactly 4 digits.', false);
+    if (newPassword.length < 4) {
+        showResult('changePasswordResult', 'New password must be at least 4 characters.', false);
         return;
     }
 
-    if (newPin !== newPinConfirm) {
-        showResult('changePinResult', 'New PINs do not match.', false);
+    if (newPassword !== newPasswordConfirm) {
+        showResult('changePasswordResult', 'New passwords do not match.', false);
         return;
     }
 
@@ -496,63 +472,55 @@ async function handleChangePin() {
     btn.textContent = '⏳ Processing...';
 
     try {
-        const data = await window.changePin(email, oldPin, newPin);
+        const data = await window.changePassword(email, oldPassword, newPassword);
         if (data.success) {
-            showResult('changePinResult', '✅ ' + data.message, true);
+            showResult('changePasswordResult', '✅ ' + data.message, true);
             btn.disabled = false;
-            btn.textContent = 'Change PIN';
+            btn.textContent = 'Change Password';
             setTimeout(() => {
                 document.querySelector('[data-tab="loginTab"]').click();
             }, 2000);
         } else {
-            showResult('changePinResult', '❌ ' + (data.message || 'PIN change failed.'), false);
+            showResult('changePasswordResult', '❌ ' + (data.message || 'Password change failed.'), false);
             btn.disabled = false;
-            btn.textContent = 'Change PIN';
+            btn.textContent = 'Change Password';
         }
     } catch(err) {
-        showResult('changePinResult', '❌ Server connection error.', false);
+        showResult('changePasswordResult', '❌ Server connection error.', false);
         btn.disabled = false;
-        btn.textContent = 'Change PIN';
+        btn.textContent = 'Change Password';
     }
 }
 
 // ==============================
-// HTML-0460: 이벤트 바인딩 및 초기화 (소분류)
-// ==============================
-// 🔍 찾기: HTML-0460
-// 📝 설명: 버튼 클릭 이벤트 및 초기화 실행
+// HTML-0470: 이벤트 바인딩 및 초기화 (소분류)
 // ==============================
 document.addEventListener('DOMContentLoaded', function() {
-    // 탭 초기화
     initTabs();
 
-    // 비밀번호 토글 초기화
-    togglePasswordVisibility('loginPin', 'toggleLoginPin');
-    togglePasswordVisibility('signupPin', 'toggleSignupPin');
-    togglePasswordVisibility('signupPinConfirm', 'toggleSignupPinConfirm');
-    togglePasswordVisibility('changeOldPin', 'toggleChangeOldPin');
-    togglePasswordVisibility('changeNewPin', 'toggleChangeNewPin');
-    togglePasswordVisibility('changeNewPinConfirm', 'toggleChangeNewPinConfirm');
+    togglePasswordVisibility('loginPassword', 'toggleLoginPassword');
+    togglePasswordVisibility('signupPassword', 'toggleSignupPassword');
+    togglePasswordVisibility('signupPasswordConfirm', 'toggleSignupPasswordConfirm');
+    togglePasswordVisibility('changeOldPassword', 'toggleChangeOldPassword');
+    togglePasswordVisibility('changeNewPassword', 'toggleChangeNewPassword');
+    togglePasswordVisibility('changeNewPasswordConfirm', 'toggleChangeNewPasswordConfirm');
 
-    // 로그인 버튼
     document.getElementById('testLoginBtn').addEventListener('click', handleLogin);
-    document.getElementById('loginPin').addEventListener('keypress', function(e) {
+    document.getElementById('loginPassword').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') handleLogin();
     });
     document.getElementById('loginEmail').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') handleLogin();
     });
 
-    // 회원가입 버튼
     document.getElementById('testSignupBtn').addEventListener('click', handleSignup);
-    document.getElementById('signupPinConfirm').addEventListener('keypress', function(e) {
+    document.getElementById('signupPasswordConfirm').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') handleSignup();
     });
 
-    // PIN 변경 버튼
-    document.getElementById('testChangePinBtn').addEventListener('click', handleChangePin);
-    document.getElementById('changeNewPinConfirm').addEventListener('keypress', function(e) {
-        if (e.key === 'Enter') handleChangePin();
+    document.getElementById('testChangePasswordBtn').addEventListener('click', handleChangePassword);
+    document.getElementById('changeNewPasswordConfirm').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') handleChangePassword();
     });
 });
 
