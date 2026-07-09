@@ -27,35 +27,35 @@
   <!-- 블록 0200: 헤더 끝 -->
 
   <!-- 블록 0300: 테스트 섹션들 시작 -->
- <!-- 0310: 로그인 -->
-<div class="test-section">
-  <h3>🔐 TEST 1: Login</h3>
-  <input id="loginEmail" type="email" placeholder="E-mail" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <div class="password-wrapper">
-    <input id="loginPassword" type="password" placeholder="Enter your password">
-    <span class="toggle-password" id="toggleLoginPassword">👁️</span>
+  <!-- 0310: 로그인 -->
+  <div class="test-section">
+    <h3>🔐 TEST 1: Login</h3>
+    <input id="loginEmail" type="email" placeholder="E-mail" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+    <div class="password-wrapper">
+      <input id="loginPassword" type="password" placeholder="Enter your password">
+      <span class="toggle-password" id="toggleLoginPassword">👁️</span>
+    </div>
+    <button id="testLoginBtn">Login</button>
+    <div id="loginResult" class="result">Click Login to test.</div>
   </div>
-  <button id="testLoginBtn">Login</button>
-  <div id="loginResult" class="result">Click Login to test.</div>
-</div>
 
-<!-- 0320: 회원가입 -->
-<div class="test-section">
-  <h3>📝 TEST 2: Signup</h3>
-  <input id="signupEmail" type="email" placeholder="E-mail" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <input id="signupName" type="text" placeholder="Name" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <input id="signupPhone" type="tel" placeholder="Phone number (10-11 digits)" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <div class="password-wrapper">
-    <input id="signupPassword" type="password" placeholder="Create password (min 4 characters)">
-    <span class="toggle-password" id="toggleSignupPassword">👁️</span>
+  <!-- 0320: 회원가입 -->
+  <div class="test-section">
+    <h3>📝 TEST 2: Signup</h3>
+    <input id="signupEmail" type="email" placeholder="E-mail" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+    <input id="signupName" type="text" placeholder="Name" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+    <input id="signupPhone" type="tel" placeholder="Phone number (10-11 digits)" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+    <div class="password-wrapper">
+      <input id="signupPassword" type="password" placeholder="Create password (min 4 characters)">
+      <span class="toggle-password" id="toggleSignupPassword">👁️</span>
+    </div>
+    <div class="password-wrapper">
+      <input id="signupPasswordConfirm" type="password" placeholder="Confirm password">
+      <span class="toggle-password" id="toggleSignupPasswordConfirm">👁️</span>
+    </div>
+    <button id="testSignupBtn">Sign Up</button>
+    <div id="signupResult" class="result">Click Sign Up to test.</div>
   </div>
-  <div class="password-wrapper">
-    <input id="signupPasswordConfirm" type="password" placeholder="Confirm password">
-    <span class="toggle-password" id="toggleSignupPasswordConfirm">👁️</span>
-  </div>
-  <button id="testSignupBtn">Sign Up</button>
-  <div id="signupResult" class="result">Click Sign Up to test.</div>
-</div>
 
   <!-- 0330: 상태확인 -->
   <div class="test-section">
@@ -64,30 +64,32 @@
     <div id="statusResult" class="result">Click Check Status.</div>
   </div>
 
-<!-- 0340: Password 변경 -->
-<div class="test-section">
-  <h3>🔑 TEST 4: Change Password</h3>
-  <input id="changeEmail" type="email" placeholder="E-mail" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-  <div class="password-wrapper">
-    <input id="changeOldPassword" type="password" placeholder="Enter current password">
-    <span class="toggle-password" id="toggleChangeOldPassword">👁️</span>
+  <!-- 0340: Password 변경 -->
+  <div class="test-section">
+    <h3>🔑 TEST 4: Change Password</h3>
+    <input id="changeEmail" type="email" placeholder="E-mail" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+    <div class="password-wrapper">
+      <input id="changeOldPassword" type="password" placeholder="Enter current password">
+      <span class="toggle-password" id="toggleChangeOldPassword">👁️</span>
+    </div>
+    <div class="password-wrapper">
+      <input id="changeNewPassword" type="password" placeholder="Enter new password (min 4 characters)">
+      <span class="toggle-password" id="toggleChangeNewPassword">👁️</span>
+    </div>
+    <div class="password-wrapper">
+      <input id="changeNewPasswordConfirm" type="password" placeholder="Confirm new password">
+      <span class="toggle-password" id="toggleChangeNewPasswordConfirm">👁️</span>
+    </div>
+    <button id="testChangePasswordBtn">Change Password</button>
+    <div id="changePasswordResult" class="result">Click Change Password to test.</div>
   </div>
-  <div class="password-wrapper">
-    <input id="changeNewPassword" type="password" placeholder="Enter new password (min 4 characters)">
-    <span class="toggle-password" id="toggleChangeNewPassword">👁️</span>
-  </div>
-  <div class="password-wrapper">
-    <input id="changeNewPasswordConfirm" type="password" placeholder="Confirm new password">
-    <span class="toggle-password" id="toggleChangeNewPasswordConfirm">👁️</span>
-  </div>
-  <button id="testChangePasswordBtn">Change Password</button>
-  <div id="changePasswordResult" class="result">Click Change Password to test.</div>
-</div>
   <!-- 블록 0300: 테스트 섹션들 끝 -->
 
-  
-  // 블록 0400: 설정
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbxadHBMhdMmUPgRvq_V-e7J9hnZFKgrkzqN2-MQ1jbqghaQXNAXIod7tH4BNm3R6o5h/exec';
+  <!-- 블록 0400-1100: JavaScript 시작 -->
+  <script>
+    // 블록 0400: 설정
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbxadHBMhdMmUPgRvq_V-e7J9hnZFKgrkzqN2-MQ1jbqghaQXNAXIod7tH4BNm3R6o5h/exec';
+
     // 블록 0500: 공통 함수
     function showResult(elementId, message, isSuccess) {
       const el = document.getElementById(elementId);
@@ -130,44 +132,44 @@ const GAS_URL = 'https://script.google.com/macros/s/AKfycbxadHBMhdMmUPgRvq_V-e7J
       }
     });
 
-   // 블록 0700: 회원가입
-document.getElementById('testSignupBtn').addEventListener('click', async function() {
-  const email = document.getElementById('signupEmail').value.trim();
-  const name = document.getElementById('signupName').value.trim();
-  const phone = document.getElementById('signupPhone').value.trim();
-  const password = document.getElementById('signupPassword').value.trim();
-  const passwordConfirm = document.getElementById('signupPasswordConfirm').value.trim();
-  
-  if (password !== passwordConfirm) {
-    showResult('signupResult', '❌ Passwords do not match.', false);
-    return;
-  }
-  if (password.length < 4) {
-    showResult('signupResult', '❌ Password must be at least 4 characters.', false);
-    return;
-  }
-  if (phone === '') {
-    showResult('signupResult', '❌ Phone number is required.', false);
-    return;
-  }
-  if (!/^[0-9]{10,11}$/.test(phone)) {
-    showResult('signupResult', '❌ Phone number must be 10-11 digits.', false);
-    return;
-  }
-  
-  showResult('signupResult', '⏳ Processing...', false);
-  try {
-    const response = await fetch(GAS_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify({ action: 'signup', email, pin: password, name, pn: phone })
+    // 블록 0700: 회원가입
+    document.getElementById('testSignupBtn').addEventListener('click', async function() {
+      const email = document.getElementById('signupEmail').value.trim();
+      const name = document.getElementById('signupName').value.trim();
+      const phone = document.getElementById('signupPhone').value.trim();
+      const password = document.getElementById('signupPassword').value.trim();
+      const passwordConfirm = document.getElementById('signupPasswordConfirm').value.trim();
+      
+      if (password !== passwordConfirm) {
+        showResult('signupResult', '❌ Passwords do not match.', false);
+        return;
+      }
+      if (password.length < 4) {
+        showResult('signupResult', '❌ Password must be at least 4 characters.', false);
+        return;
+      }
+      if (phone === '') {
+        showResult('signupResult', '❌ Phone number is required.', false);
+        return;
+      }
+      if (!/^[0-9]{10,11}$/.test(phone)) {
+        showResult('signupResult', '❌ Phone number must be 10-11 digits.', false);
+        return;
+      }
+      
+      showResult('signupResult', '⏳ Processing...', false);
+      try {
+        const response = await fetch(GAS_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify({ action: 'signup', email, pin: password, name, pn: phone })
+        });
+        const data = await response.json();
+        showResult('signupResult', JSON.stringify(data, null, 2), data.success);
+      } catch(err) {
+        showResult('signupResult', '❌ Error: ' + err.message, false);
+      }
     });
-    const data = await response.json();
-    showResult('signupResult', JSON.stringify(data, null, 2), data.success);
-  } catch(err) {
-    showResult('signupResult', '❌ Error: ' + err.message, false);
-  }
-});
 
     // 블록 0800: 상태확인
     document.getElementById('testStatusBtn').addEventListener('click', async function() {
