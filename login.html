@@ -126,7 +126,9 @@
 // 설정
 // ============================================================
 const GAS_URL = 'https://script.google.com/macros/s/AKfycbxadHBMhdMmUPgRvq_V-e7J9hnZFKgrkzqN2-MQ1jbqghaQXNAXIod7tH4BNm3R6o5h/exec';
-const TILDA_URL = 'https://your-tilda-domain.com'; // ★★★★★ 실제 Tilda.cc 주소로 변경 ★★★★★
+
+// ★★★★★ Tilda.cc 주소 (로그인 성공 후 복귀) ★★★★★
+const TILDA_URL = 'https://gongboo.tilda.ws/login';
 
 // ============================================================
 // DOM 요소
@@ -169,11 +171,10 @@ async function handleLogin() {
     const data = await response.json();
 
     if (data.success) {
-      // ★★★★★ 세션 저장 ★★★★★
+      // ★★★★★ 세션 저장 (auth.js 사용 또는 자체 저장) ★★★★★
       if (typeof window.saveSession === 'function') {
         window.saveSession(email, data.name);
       } else {
-        // auth.js가 없으면 자체 저장
         sessionStorage.setItem('user', JSON.stringify({ email, name: data.name, loggedIn: true }));
       }
 
@@ -205,17 +206,16 @@ emailInput.addEventListener('keypress', function(e) {
 });
 
 // ============================================================
-// Sign Up 링크 (회원가입 페이지로 이동)
+// Sign Up 링크
 // ============================================================
 document.getElementById('signupLink').addEventListener('click', function(e) {
   e.preventDefault();
-  // 회원가입은 login.html의 Sign Up 탭으로 이동 (기존 login.html에 구현)
-  // 또는 별도 회원가입 페이지로 이동
-  alert('회원가입은 추후 구현 예정입니다.');
+  alert('Sign up feature coming soon.');
 });
 
-console.log('✅ login.html loaded. GAS_URL:', GAS_URL);
-console.log('✅ Redirect to Tilda.cc:', TILDA_URL);
+console.log('✅ login.html loaded.');
+console.log('✅ GAS_URL:', GAS_URL);
+console.log('✅ Redirect to:', TILDA_URL);
 </script>
 
 </body>
