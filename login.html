@@ -39,22 +39,23 @@
     <div id="loginResult" class="result">Click Login to test.</div>
   </div>
 
-  <!-- 0320: 회원가입 -->
-  <div class="test-section">
-    <h3>📝 TEST 2: Signup</h3>
-    <input id="signupEmail" type="email" placeholder="Enter your email" value="testuser@test.com" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-    <input id="signupName" type="text" placeholder="Enter your name" value="Test User" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
-    <div class="password-wrapper">
-      <input id="signupPassword" type="password" placeholder="Create password (min 4 characters)">
-      <span class="toggle-password" id="toggleSignupPassword">👁️</span>
-    </div>
-    <div class="password-wrapper">
-      <input id="signupPasswordConfirm" type="password" placeholder="Confirm password">
-      <span class="toggle-password" id="toggleSignupPasswordConfirm">👁️</span>
-    </div>
-    <button id="testSignupBtn">Sign Up</button>
-    <div id="signupResult" class="result">Click Sign Up to test.</div>
+ <!-- 0320: 회원가입 -->
+<div class="test-section">
+  <h3>📝 TEST 2: Signup</h3>
+  <input id="signupEmail" type="email" placeholder="Enter your email" value="testuser@test.com" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+  <input id="signupName" type="text" placeholder="Enter your name" value="Test User" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+  <input id="signupPhone" type="tel" placeholder="Phone number (10-11 digits)" value="01012345678" style="width:100%;padding:10px;margin-bottom:10px;border:1px solid #ddd;border-radius:4px;box-sizing:border-box;">
+  <div class="password-wrapper">
+    <input id="signupPassword" type="password" placeholder="Create password (min 4 characters)">
+    <span class="toggle-password" id="toggleSignupPassword">👁️</span>
   </div>
+  <div class="password-wrapper">
+    <input id="signupPasswordConfirm" type="password" placeholder="Confirm password">
+    <span class="toggle-password" id="toggleSignupPasswordConfirm">👁️</span>
+  </div>
+  <button id="testSignupBtn">Sign Up</button>
+  <div id="signupResult" class="result">Click Sign Up to test.</div>
+</div>
 
   <!-- 0330: 상태확인 -->
   <div class="test-section">
@@ -131,33 +132,44 @@
       }
     });
 
-    // 블록 0700: 회원가입
-    document.getElementById('testSignupBtn').addEventListener('click', async function() {
-      const email = document.getElementById('signupEmail').value.trim();
-      const name = document.getElementById('signupName').value.trim();
-      const password = document.getElementById('signupPassword').value.trim();
-      const passwordConfirm = document.getElementById('signupPasswordConfirm').value.trim();
-      if (password !== passwordConfirm) {
-        showResult('signupResult', '❌ Passwords do not match.', false);
-        return;
-      }
-      if (password.length < 4) {
-        showResult('signupResult', '❌ Password must be at least 4 characters.', false);
-        return;
-      }
-      showResult('signupResult', '⏳ Processing...', false);
-      try {
-        const response = await fetch(GAS_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify({ action: 'signup', email, pin: password, name })
-        });
-        const data = await response.json();
-        showResult('signupResult', JSON.stringify(data, null, 2), data.success);
-      } catch(err) {
-        showResult('signupResult', '❌ Error: ' + err.message, false);
-      }
+   // 블록 0700: 회원가입
+document.getElementById('testSignupBtn').addEventListener('click', async function() {
+  const email = document.getElementById('signupEmail').value.trim();
+  const name = document.getElementById('signupName').value.trim();
+  const phone = document.getElementById('signupPhone').value.trim();
+  const password = document.getElementById('signupPassword').value.trim();
+  const passwordConfirm = document.getElementById('signupPasswordConfirm').value.trim();
+  
+  if (password !== passwordConfirm) {
+    showResult('signupResult', '❌ Passwords do not match.', false);
+    return;
+  }
+  if (password.length < 4) {
+    showResult('signupResult', '❌ Password must be at least 4 characters.', false);
+    return;
+  }
+  if (phone === '') {
+    showResult('signupResult', '❌ Phone number is required.', false);
+    return;
+  }
+  if (!/^[0-9]{10,11}$/.test(phone)) {
+    showResult('signupResult', '❌ Phone number must be 10-11 digits.', false);
+    return;
+  }
+  
+  showResult('signupResult', '⏳ Processing...', false);
+  try {
+    const response = await fetch(GAS_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify({ action: 'signup', email, pin: password, name, pn: phone })
     });
+    const data = await response.json();
+    showResult('signupResult', JSON.stringify(data, null, 2), data.success);
+  } catch(err) {
+    showResult('signupResult', '❌ Error: ' + err.message, false);
+  }
+});
 
     // 블록 0800: 상태확인
     document.getElementById('testStatusBtn').addEventListener('click', async function() {
