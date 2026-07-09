@@ -866,17 +866,17 @@
         }
     </script>
 
-// ==============================
-// HTML-0440: 로그인 처리 (handleLogin) - 소분류
-// ==============================
+<!-- ============================== -->
+<!-- HTML-0440: 로그인 처리 (handleLogin) - 소분류 -->
+<!-- ============================== -->
 <script>
 async function handleLogin() {
     const email = document.getElementById('loginEmail').value.trim();
-    const password = document.getElementById('loginPassword').value.trim();
+    const pin = document.getElementById('loginPassword').value.trim();  // ← pin으로 변경
     const btn = document.getElementById('testLoginBtn');
 
-    if (!email || !password) {
-        showResult('loginResult', 'Please enter both email and password.', false);
+    if (!email || !pin) {
+        showResult('loginResult', 'Please enter both email and PIN.', false);
         return;
     }
 
@@ -884,7 +884,7 @@ async function handleLogin() {
     btn.textContent = '⏳ Processing...';
 
     try {
-        const data = await window.login(email, password);
+        const data = await window.login(email, pin);  // ← pin 전달
         if (data.success) {
             window.saveSession(email, data.name || 'User');
             showResult('loginResult', '✅ Welcome, ' + (data.name || 'User') + '!', true);
