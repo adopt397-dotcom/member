@@ -126,7 +126,6 @@ async function handleLogin() {
     return;
   }
 
-  // Save original text and disable button
   if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent;
   setButtonLoading(btn, true);
 
@@ -134,11 +133,29 @@ async function handleLogin() {
     const result = await window.login(email, pin);
     if (result.success) {
       window.saveSession(email, result.name);
+      
+      // ★★★★★ 로그인 성공 시 setupSection 표시 ★★★★★
       const overlay = document.getElementById('loginOverlay');
       if (overlay) overlay.remove();
+      
+      // main.js의 setupSection 표시
+      const setupSection = document.getElementById('setupSection');
+      if (setupSection) {
+        setupSection.style.display = 'block';
+      }
+      
+      // quizMain 숨김 해제 (문제 풀이 화면)
+      const quizMain = document.getElementById('quizMain');
+      if (quizMain) {
+        quizMain.style.display = 'block';
+      }
+      
+      // initialize 재실행
       if (typeof window.initialize === 'function') {
         window.initialize();
       }
+      
+      console.log('✅ Login successful, setupSection visible.');
     } else {
       errorEl.textContent = result.message || 'Login failed.';
       errorEl.style.display = 'block';
@@ -178,7 +195,6 @@ async function handleSignup() {
     return;
   }
 
-  // Save original text and disable button
   if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent;
   setButtonLoading(btn, true);
 
@@ -229,7 +245,6 @@ function toggleForm(e) {
     signupError.style.display = 'none';
   }
 
-  // Re-attach event to new toggleLink
   document.getElementById('toggleLink').addEventListener('click', toggleForm);
 }
 
@@ -265,7 +280,6 @@ async function handleChangePin() {
     return;
   }
 
-  // Save original text and disable button
   if (!btn.dataset.originalText) btn.dataset.originalText = btn.textContent;
   setButtonLoading(btn, true);
 
